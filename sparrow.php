@@ -1479,23 +1479,28 @@ class Sparrow {
         $data = get_object_vars($object);
         $id = $object->{$properties->id_field};
 
-        unset($data[$properties->id_field]);
-
         if ($id === null) {
+            unset($data[$properties->id_field]);
             $this->insert($data)
                 ->execute();
 
             $object->{$properties->id_field} = $this->insert_id;
-        }
-        else {
+        } else {
             if ($fields !== null) {
                 $keys = array_flip($fields);
                 $data = array_intersect_key($data, $keys);
             }
-
             $this->where($properties->id_field, $id)
-                ->update($data)
+                ->select($properties->id_field)
                 ->execute();
+            if ($this->num_rows) {
+                unset($data[$properties->id_field]);
+                $this->update($data)
+                    ->execute();
+            } else {
+                $this->insert($data)
+                    ->execute();
+            }
         }
 
         return $this->class;
