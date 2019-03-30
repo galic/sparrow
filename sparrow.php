@@ -1294,10 +1294,10 @@ class Sparrow {
 
                 if ($this->is_cached = file_exists($file)) {
                     $data = unserialize(file_get_contents($file));
-                    if ($data['expire'] == 0) {
+                    if ($data['expire'] == 0 || time() < $data['expire']) {
                         return $data['value'];
                     }
-                    else if (time() > $data['expire']) {
+                    else {
                         $this->is_cached = false;
                     }
                 }
@@ -1332,7 +1332,7 @@ class Sparrow {
                 return xcache_unset($key);
 
             case 'file':
-                $file = $this->cache.'/'.$key;
+                $file = $this->cache.'/'.md5($key);
                 if (file_exists($file)) {
                     return unlink($file);
                 }
