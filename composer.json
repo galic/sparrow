@@ -1,0 +1,7 @@
+{
+    "name": "galic/sparrow",
+    "description": "Sparrow is a simple but powerful database toolkit.",
+    "autoload": {
+    	"classmap": ["sparrow.php"]
+    }
+}
