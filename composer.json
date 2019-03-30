@@ -1,7 +1,14 @@
 {
     "name": "galic/sparrow",
     "description": "Sparrow is a simple but powerful database toolkit.",
+    "homepage": "https://github.com/galic/sparrow",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3"
+    },
     "autoload": {
-    	"classmap": ["sparrow.php"]
+        "classmap": [
+            "sparrow.php"
+        ]
     }
 }
