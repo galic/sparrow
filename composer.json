@@ -1,5 +1,6 @@
 {
     "name": "galic/sparrow",
+    "version": "0.1.0",
     "description": "Sparrow is a simple but powerful database toolkit.",
     "homepage": "https://github.com/galic/sparrow",
     "license": "MIT",
